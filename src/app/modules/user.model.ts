@@ -1,5 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { TAddress, TFullName, TOrdersArr, TUser } from './user/user.interface';
+import bcrypt from 'bcrypt';
+import config from '../config';
 
 const fullNameSchema = new Schema<TFullName>({
   firstName: { type: String, required: [true, 'firstname required'] },
@@ -36,7 +38,21 @@ const userSchema = new Schema<TUser>({
   isActive: { type: Boolean, required: true },
   hobbies: [{ type: String }],
   address: { type: addressSchema },
-  orders: [{ ordersArrSchema }],
+  orders: [ordersArrSchema],
+});
+
+// pre
+userSchema.pre('save', async function (next) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
+  const user = this;
+  user.password = await bcrypt.hash(user.password, Number(config.saltRounds));
+  next();
+});
+
+//post
+userSchema.post('save', async function (doc, next) {
+  doc.password = '';
+  next();
 });
 
 export const UserModel = model<TUser>('User', userSchema);
