@@ -1,5 +1,11 @@
 import { Schema, model } from 'mongoose';
-import { TAddress, TFullName, TOrdersArr, TUser } from './user/user.interface';
+import {
+  TAddress,
+  TFullName,
+  TOrdersArr,
+  TUser,
+  UserModel,
+} from './user/user.interface';
 import bcrypt from 'bcrypt';
 import config from '../config';
 
@@ -20,7 +26,7 @@ const ordersArrSchema = new Schema<TOrdersArr>({
   quantity: { type: Number },
 });
 
-const userSchema = new Schema<TUser>({
+const userSchema = new Schema<TUser, UserModel>({
   userId: {
     type: Number,
     unique: true,
@@ -55,4 +61,26 @@ userSchema.post('save', async function (doc, next) {
   next();
 });
 
-export const UserModel = model<TUser>('User', userSchema);
+userSchema.pre('findOne', function (next) {
+  this.findOne({ isDeleted: { $ne: true } });
+  next();
+});
+
+userSchema.post('save', function (doc, next) {
+  //  doc = {
+  //   userName: doc.userName,
+  //   fullName: doc.fullName,
+  //   age: doc.age,
+  //   email: doc.email,
+  //   address: doc.address,
+  // };
+
+  next();
+});
+
+userSchema.statics.isUserExists = async function (id: number) {
+  const existingUser = await User.findOne({ userId: id });
+  return existingUser;
+};
+
+export const User = model<TUser, UserModel>('User', userSchema);
