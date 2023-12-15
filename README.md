@@ -7,10 +7,13 @@ API endpoints:
 
 To get all users
 - https://second-assignment-pqktw38fg-fahim-hossains-projects.vercel.app/api/users
+  
 To get single user with user Id:
 - https://second-assignment-pqktw38fg-fahim-hossains-projects.vercel.app/api/users/2
+  
 To update a user detail:
 - https://second-assignment-pqktw38fg-fahim-hossains-projects.vercel.app/api/users/2
+  
 Deleting a user:
  - https://second-assignment-pqktw38fg-fahim-hossains-projects.vercel.app/api/users/2
 
