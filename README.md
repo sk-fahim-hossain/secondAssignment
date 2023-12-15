@@ -3,7 +3,9 @@ Brief description or introduction of your project.
 
 
 API endpoints:
-To get all users:
+
+
+To get all users
 - https://second-assignment-pqktw38fg-fahim-hossains-projects.vercel.app/api/users
 To get single user with user Id:
 - https://second-assignment-pqktw38fg-fahim-hossains-projects.vercel.app/api/users/2
