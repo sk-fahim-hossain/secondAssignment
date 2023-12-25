@@ -6,17 +6,17 @@ API endpoints:
 
 
 To get all users
-- https://second-assignment-qbkt95v58-fahim-hossains-projects.vercel.app/api/users
+- https://second-assignment-tau.vercel.app/api/users
 
   
 To get single user with user Id:
-- https://second-assignment-qbkt95v58-fahim-hossains-projects.vercel.app/api/users/2
+- https://second-assignment-tau.vercel.app/api/users/1
   
 To update a user detail:
-- https://second-assignment-qbkt95v58-fahim-hossains-projects.vercel.app/api/users/2
+- https://second-assignment-tau.vercel.app/api/users/1
   
 Deleting a user:
- - https://second-assignment-qbkt95v58-fahim-hossains-projects.vercel.app/api/users/2
+ - https://second-assignment-tau.vercel.app/api/users/1
 
 ## Prerequisites
 "In the 'Get All Users' API, it returns all the users saved in the database."
